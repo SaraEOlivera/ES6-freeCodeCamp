@@ -170,5 +170,140 @@ const half = ({min, max}) => (max + min) / 2.0;
 
 //--------------------------------------------------------------
 
-// #15
+/* #15 Use template literal syntax with backticks to create an array of list element (li) strings. Each list element's text should be one of the array elements from the failure property on the result object and have a class attribute with the value text-warning. The makeList function should return the array of list item strings.
+
+Use an iterator method (any kind of loop) to get the desired output (shown below). */
+
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["no-extra-semi", "no-dup-keys"]
+};
+function makeList(arr) {
+  const failureItems = arr.map(item => `<li class="text-warning">${item}</li>`);
+  console.log(failureItems)
+  return failureItems;
+}
+
+const failuresList = makeList(result.failure);
+
+//------------------------------------------------------------------
+
+// #16 Use object property shorthand with object literals to create and return an object with name, age and gender properties.
+
+const createPerson = (name, age, gender) => ({
+  // Cambia solo el código debajo de esta línea
+  
+    name, age, gender
+  
+  // Cambia solo el código encima de esta línea
+});
+
+//-------------------------------------------------------------------------
+
+// #17 Refactor the function setGear inside the object bicycle to use the shorthand syntax described above.
+
+const bicycle = {
+  gear: 2,
+  setGear(newGear) {
+    this.gear = newGear;
+  }
+};
+bicycle.setGear(3);
+console.log(bicycle.gear);
+
+//-----------------------------------------------------------------------------
+
+/* #18 Use the class keyword and write a constructor to create the Vegetable class.
+
+The Vegetable class allows you to create a vegetable object with a property name that gets passed to the constructor. */
+
+class Vegetable {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+const carrot = new Vegetable('carrot');
+console.log(carrot.name);
+
+//-------------------------------------------------------------------------
+
+/* #19 Use the class keyword to create a Thermostat class. The constructor accepts a Fahrenheit temperature. In the class, create a getter to obtain the temperature in Celsius and a setter to set the temperature in Celsius. Remember that C = 5/9 * (F - 32) and F = C * 9.0 / 5 + 32, where F is the value of temperature in Fahrenheit, and C is the value of the same temperature in Celsius.
+
+Note: When you implement this, you will track the temperature inside the class in one scale, either Fahrenheit or Celsius.
+
+This is the power of a getter and a setter. You are creating an API for another user, who can get the correct result regardless of which one you track. In other words, you are abstracting implementation details from the user.*/
+
+class Thermostat {
+  constructor(temperature){
+    this._temperature = temperature;
+  }
+
+  get temperature() {
+    return (5/9) * (this._temperature - 32);
+  }
+
+  set temperature(celsius) {
+    this._temperature = celsius * 9.0 / 5 + 32;
+  }
+}
+
+const thermos = new Thermostat(76); // Farenheit scale
+let temp = thermos.temperature; // 24.44  Celsius
+thermos.temperature = 26;
+temp = thermos.temperature; // 26  Celsius
+
+//--------------------------------------------------------------------------
+
+// #20 Add a script to the HTML document of type module and give it the source file of index.js
+
+<html>
+  <body>
+    <script type = "module" src="index.js"></script>
+
+  </body>
+</html>
+
+//-------------------------------------------------------------------------------
+
+// #21 There are two string-related functions in the editor. Export both of them using the method of your choice.
+
+const uppercaseString = (string) => {
+  return string.toUpperCase();
+}
+
+const lowercaseString = (string) => {
+  return string.toLowerCase()
+}
+
+export { uppercaseString, lowercaseString };
+
+//---------------------------------------------------------------------
+
+// #22 Add the appropriate import statement that will allow the current file to use the uppercaseString and lowercaseString functions you exported in the previous lesson. These functions are in a file called string_functions.js, which is in the same directory as the current file.
+
+import { uppercaseString, lowercaseString } from './string_functions.js';
+
+uppercaseString("hello");
+lowercaseString("WORLD!");
+
+//------------------------------------------------------------------------------
+
+// #23 The code in this file requires the contents of the file: string_functions.js, that is in the same directory as the current file. Use the import * as syntax to import everything from the file into an object called stringFunctions.
+
+import * as stringFunctions from './string_functions.js';
+
+stringFunctions.uppercaseString("hello");
+stringFunctions.lowercaseString("WORLD!");
+
+//--------------------------------------------------------------------------
+
+// #24 The following function should be the fallback value for the module. Please add the necessary code to do so.
+
+export default function (x, y) {
+  return x - y;
+}
+
+//------------------------------------------------------------------------
 
